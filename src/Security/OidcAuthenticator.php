@@ -8,6 +8,7 @@ use Drenso\OidcBundle\Security\Exception\OidcAuthenticationException;
 use Drenso\OidcBundle\Security\Exception\UnsupportedManagerException;
 use Drenso\OidcBundle\Security\Token\OidcToken;
 use Drenso\OidcBundle\Security\UserProvider\OidcUserProviderInterface;
+use Drenso\OidcBundle\Model\OidcUserData;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
