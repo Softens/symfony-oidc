@@ -142,24 +142,9 @@ class OidcClient implements OidcClientInterface
   /**
    * @inheritDoc
    */
-  public function retrieveUserInfo(OidcTokens $tokens): OidcUserData
+  public function retrieveUserInfo(OidcTokens $tokens): ?object
   {
-    // Set the authorization header
-    $headers = ["Authorization: Bearer {$tokens->getAccessToken()}"];
-
-    // Retrieve the user information and convert the encoding to UTF-8 to harden for surfconext UTF-8 bug
-    $jsonData = $this->urlFetcher->fetchUrl($this->getUserinfoEndpoint(), NULL, $headers);
-    $jsonData = mb_convert_encoding($jsonData, 'UTF-8');
-
-    // Read the data
-    $data = json_decode($jsonData, true);
-
-    // Check data due
-    if (!is_array($data)) {
-      throw new OidcException("Error retrieving the user info from the endpoint.");
-    }
-
-    return new OidcUserData($data);
+    return $this->jwtHelper->decodeJwt($tokens->getAccessToken(), 1);
   }
 
   /**
