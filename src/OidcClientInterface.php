@@ -42,5 +42,5 @@ interface OidcClientInterface
    *
    * @throws OidcException
    */
-  public function retrieveUserInfo(OidcTokens $tokens): OidcUserData;
+  public function retrieveUserInfo(OidcTokens $tokens): ?object;
 }
