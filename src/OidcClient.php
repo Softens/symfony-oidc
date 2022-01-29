@@ -282,15 +282,10 @@ class OidcClient implements OidcClientInterface
         'code'          => $code,
         'redirect_uri'  => $this->getRedirectUrl(),
         'client_id'     => $this->clientId,
-        'client_secret' => $this->clientSecret,
     ];
 
     // Use basic auth if offered
     $headers = [];
-    if (in_array('client_secret_basic', $this->getTokenEndpointAuthMethods())) {
-      $headers = ['Authorization: Basic ' . base64_encode(urlencode($this->clientId) . ':' . urlencode($this->clientSecret))];
-      unset($params['client_secret']);
-    }
 
     $jsonToken = json_decode($this->urlFetcher->fetchUrl($this->getTokenEndpoint(), $params, $headers));
 
