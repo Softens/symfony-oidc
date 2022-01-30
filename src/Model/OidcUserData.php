@@ -111,4 +111,12 @@ class OidcUserData
   {
     return $this->userData[$key] ?: [];
   }
+  
+  /**
+   * Get an array groups
+   */
+  public function getGroups(): array
+  {
+    return $this->getUserDataArray('groups') ?: [];
+  }
 }
