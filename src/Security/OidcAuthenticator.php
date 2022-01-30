@@ -60,7 +60,7 @@ class OidcAuthenticator implements AuthenticatorInterface, AuthenticationEntryPo
 
       // Ensure the user exists
       $userIdentifier = $userData->sub;
-      $userData = new OidcUserData(json_decode(json_encode($userData, true)));
+      $userData = new OidcUserData(json_decode(json_encode($userData), true));
       $this->oidcUserProvider->ensureUserExists($userIdentifier, $userData);
 
       // Create the passport
