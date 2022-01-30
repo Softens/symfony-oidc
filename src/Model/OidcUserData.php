@@ -21,23 +21,7 @@ class OidcUserData
    */
   public function getDisplayName(): string
   {
-    return $this->getUserDataString('preferred_username');
-  }
-
-  /**
-   * Get the OIDC family_name claim
-   */
-  public function getFamilyName(): string
-  {
-    return $this->getUserDataString('family_name');
-  }
-
-  /**
-   * Get the OIDC name claim
-   */
-  public function getFullName(): string
-  {
-    return $this->getUserDataString('name');
+    return $this->getUserDataString('display_name');
   }
 
   /**
@@ -55,37 +39,13 @@ class OidcUserData
   {
     return $this->getUserDataString('email');
   }
-
+  
   /**
-   * Get the OIDC email verified claim
+   * Get the OIDC groups
    */
-  public function getEmailVerified(): bool
+  public function getGroups(): array
   {
-    return $this->getUserDataBoolean('email_verified');
-  }
-
-  /**
-   * Get the OIDC schac_home_organization claim
-   */
-  public function getOrganisation(): string
-  {
-    return $this->getUserDataString('schac_home_organization');
-  }
-
-  /**
-   * Get the OIDC edu_person_affiliations claim
-   */
-  public function getAffiliations(): array
-  {
-    return $this->getUserDataArray('eduperson_affiliation');
-  }
-
-  /**
-   * Get the OIDC uids claim
-   */
-  public function getUids(): array
-  {
-    return $this->getUserDataArray('uids');
+    return $this->getUserDataArray('group');
   }
 
   /**
@@ -110,13 +70,5 @@ class OidcUserData
   public function getUserDataArray(string $key): array
   {
     return $this->userData[$key] ?: [];
-  }
-  
-  /**
-   * Get the OIDC groups
-   */
-  public function getGroups(): array
-  {
-    return $this->getUserDataArray('groups');
   }
 }
